@@ -1,9 +1,18 @@
 #FINAL PROJECT:ATM SYSTEM.
+import datetime
+
+
 class ATM:
   def __init__(self):
     self.pin="12345"
     self.balance=5000
     self.mini_statement=[]
+
+# Adding Timestamps with actions:
+  def add_timestamp(self):
+    presenthour=datetime.datetime.now().strftime("%d/%m/%Y  %H:%M:%S")
+    return presenthour
+
 
 # Authentication:
   def authenticate(self):
@@ -24,9 +33,9 @@ class ATM:
 
 # Check Balance:
   def check_balance(self):
-    print(f"\nCurrent Balance:Rs.{self.balance:.2f}")
+    print(f"\nCurrent Balance:Rs.{self.balance:.2f}\n{self.add_timestamp()}")
     self.mini_statement.append(
-        f"Check Balance -> Rs.{self.balance:.2f}"
+        f"Check Balance -> Rs.{self.balance:.2f}   {self.add_timestamp()}"
     )
 
 # Deposit Money:
@@ -35,10 +44,10 @@ class ATM:
 
     if (amount>0):
       self.balance+=amount
-      print(f"\nRs.{amount:.2f} Deposited Successfully.")
+      print(f"\nRs.{amount:.2f} Deposited Successfully.\n {self.add_timestamp()}")
       print(f"\nUpdated Balance:Rs.{self.balance:.2f}")
       self.mini_statement.append(
-          f"Deposited->Rs.{amount:.2f}"
+          f"Deposited->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
     else:
       print("\nInvalid Amount.")
@@ -53,11 +62,11 @@ class ATM:
       print("\nInsufficient Balance.")
     else:
       self.balance-=amount
-      print(f"\nRs.{amount:.2f} Withdrawal Successful.")
+      print(f"\nRs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
       print(f"Remaining Balance:Rs.{self.balance:.2f}")
 
       self.mini_statement.append(
-          f"Withdrawn->Rs.{amount:.2f}"
+          f"Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
 # Change Pin:
   def change_pin(self):
@@ -69,7 +78,10 @@ class ATM:
 
       if (new_pin==confirm):
         self.pin=new_pin
-        print("\nPIN Changed Successfully.")
+        print("\nPIN Changed Successfully.\n {self.add_timestamp()}")
+        self.mini_statement.append(
+          f"PIN Changed on {self.add_timestamp()}"
+        )
       else:
         print("\nPIN Mismatch!")
     else:
@@ -84,6 +96,8 @@ class ATM:
       for item in self.mini_statement:
         print("*",item)
     print("=========================")
+
+
 
 # ATM Menu:
   def atm_menu(self):
