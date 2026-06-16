@@ -1,0 +1,7 @@
+{
+    "account1":{
+        "PIN":"11",
+        "balance":500,
+        "mini_statement":[]
+    }
+}
