@@ -1,17 +1,34 @@
 #FINAL PROJECT:ATM SYSTEM.
 import datetime
-
+import json
 
 class ATM:
   def __init__(self):
-    self.pin="12345"
+    self.pin="1"
     self.balance=5000
     self.mini_statement=[]
+    with open("account_data.json","r") as f:
+      data=json.load(f)
+      self.pin=data["account1"]["PIN"]
+      self.balance=data["account1"]["Balance"]
+      self.mini_statement=data["account1"]["Mini-Statement"]
 
 # Adding Timestamps with actions:
   def add_timestamp(self):
     presenthour=datetime.datetime.now().strftime("%d/%m/%Y  %H:%M:%S")
     return presenthour
+
+# Saving data to JSON File
+  def save_data(self):
+    with open("account_data.json","w") as save:
+      update_data={
+        "account1":{
+          "PIN":self.pin,
+          "Balance":self.balance,
+          "Mini-Statement":self.mini_statement
+        }
+      }
+      json.dump(update_data,save,indent=4)
 
 
 # Authentication:
@@ -49,17 +66,19 @@ class ATM:
       self.mini_statement.append(
           f"Deposited->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
+      self.save_data()
     else:
       print("\nInvalid Amount.")
+
 
 # Withdraw Money:
   def withdraw_money(self):
     amount=float(input("Enter Withdraw Amount:Rs."))
 
     if (amount<=0):
-      print("\nInvalid Amount.")
+      print(f"\nInvalid Amount.")
     elif (amount>self.balance):
-      print("\nInsufficient Balance.")
+      print(f"\nInsufficient Balance.")
     else:
       self.balance-=amount
       print(f"\nRs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
@@ -68,6 +87,9 @@ class ATM:
       self.mini_statement.append(
           f"Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
+      self.save_data()
+
+
 # Change Pin:
   def change_pin(self):
     old_pin=input("Enter Old PIN:")
@@ -78,10 +100,11 @@ class ATM:
 
       if (new_pin==confirm):
         self.pin=new_pin
-        print("\nPIN Changed Successfully.\n {self.add_timestamp()}")
+        print(f"\nPIN Changed Successfully.\n {self.add_timestamp()}")
         self.mini_statement.append(
           f"PIN Changed on {self.add_timestamp()}"
         )
+        self.save_data()
       else:
         print("\nPIN Mismatch!")
     else:
@@ -97,7 +120,12 @@ class ATM:
         print("*",item)
     print("=========================")
 
-
+# Exiting and Saving data 
+  def exit(self):
+    self.mini_statement.append("\nLogged out Successfully.  {self.add_timestamp()}")
+    self.save_data()
+    print("\nThank You for using ATM.\nLogged out Successfully.")
+    exit()
 
 # ATM Menu:
   def atm_menu(self):
@@ -124,7 +152,7 @@ class ATM:
       elif (choice=="5"):
         self.show_miniStatement()
       elif(choice=="6"):
-        print("\nThank You for using ATM")
+        self.exit()
         break
       else:
         print("\nInvalid Choice!")
