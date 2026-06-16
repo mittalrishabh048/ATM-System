@@ -1,19 +1,20 @@
 {
-    "account1": {
+    "1001": {
+        "Name": "Rishabh",
         "PIN": "7863",
         "Balance": 5400.0,
+        "Mini-Statement": []
+    },
+    "1002": {
+        "Name": "Rajat",
+        "PIN": "6644",
+        "Balance": 60000.0,
         "Mini-Statement": [
-            "Check Balance -> Rs.500.00   16/06/2026  13:24:43",
-            "Deposited->Rs.5000.00  16/06/2026  13:24:50",
-            "Withdrawn->Rs.500.00  16/06/2026  13:24:54",
-            "PIN Changed on 16/06/2026  13:25:16",
-            "Check Balance -> Rs.5000.00   16/06/2026  13:43:20",
-            "\nLogged out Successfully.  {self.add_timestamp()}",
-            "Deposited->Rs.400.00  16/06/2026  13:44:50",
-            "\nLogged out Successfully.  {self.add_timestamp()}",
-            "PIN Changed on 16/06/2026  13:45:41",
-            "\nLogged out Successfully.  {self.add_timestamp()}",
-            "\nLogged out Successfully.  {self.add_timestamp()}"
+            "Check Balance -> Rs.50000.00   16/06/2026  19:22:18",
+            "Deposited->Rs.10000.00  16/06/2026  19:22:25",
+            "Withdrawn->Rs.1000.00  16/06/2026  19:22:30",
+            "PIN Changed on 16/06/2026  19:22:43",
+            "\nLogged out Successfully.  16/06/2026  19:22:49"
         ]
     }
 }

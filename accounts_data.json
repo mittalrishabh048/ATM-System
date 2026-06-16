@@ -1,0 +1,36 @@
+{
+    "1001": {
+        "Name": "Rishabh",
+        "PIN": "7863",
+        "Balance": 5900.0,
+        "Mini-Statement": [
+            "Check Balance -> Rs.5400.00   16/06/2026  19:28:06",
+            "Deposited->Rs.500.00  16/06/2026  19:28:08",
+            "Withdrawn->Rs.200.00  16/06/2026  19:28:12",
+            "\nLogged out Successfully.  16/06/2026  19:28:17"
+        ]
+    },
+    "1002": {
+        "Name": "Rajat",
+        "PIN": "4466",
+        "Balance": 52000.0,
+        "Mini-Statement": [
+            "Check Balance -> Rs.50000.00   16/06/2026  19:28:30",
+            "Deposited->Rs.2000.00  16/06/2026  19:28:36",
+            "Withdrawn->Rs.1000.00  16/06/2026  19:28:39",
+            "\nLogged out Successfully.  16/06/2026  19:28:41"
+        ]
+    },
+    "8288": {
+        "Name": "Aadrsh",
+        "PIN": "1111",
+        "Balance": 500.0,
+        "Mini-Statement": [
+            "Account Created on 16/06/2026  19:29:10",
+            "Check Balance -> Rs.0.00   16/06/2026  19:29:30",
+            "Deposited->Rs.500.00  16/06/2026  19:29:34",
+            "Withdrawn->Rs.100.00  16/06/2026  19:29:37",
+            "\nLogged out Successfully.  16/06/2026  19:29:39"
+        ]
+    }
+}
