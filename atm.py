@@ -86,7 +86,7 @@ class ATM:
       "Name":name,
       "PIN":pin,
       "Balance":0.0,
-      "Mini-Statement":[f"Account Created on {self.add_timestamp()}"]
+      "Transactions":[f"Account Created on {self.add_timestamp()}"]
     }
     self.save_data()
     print(f"Account Created Successfully.\nYour Account Number is:{new_acc_num}.\nPlease remember this number to login.")
@@ -95,7 +95,7 @@ class ATM:
   def check_balance(self):
     current_bal=self.accounts[self.current_user]["Balance"]
     print(f"\nCurrent Balance:Rs.{current_bal:.2f}\n{self.add_timestamp()}")
-    self.accounts[self.current_user]["Mini-Statement"].append(
+    self.accounts[self.current_user]["Transactions"].append(
         f"Check Balance -> Rs.{current_bal:.2f}   {self.add_timestamp()}"
     )
 
@@ -108,7 +108,7 @@ class ATM:
       self.accounts[self.current_user]["Balance"]+=amount
       print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Deposited Successfully.\n {self.add_timestamp()}")
       print(f"\nUpdated Balance:Rs.{self.accounts[self.current_user]["Balance"]:.2f}")
-      self.accounts[self.current_user]["Mini-Statement"].append(
+      self.accounts[self.current_user]["Transactions"].append(
           f"Transaction ID:{transaction__id} | Deposited->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
       self.save_data()
@@ -131,7 +131,7 @@ class ATM:
       print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
       print(f"Remaining Balance:Rs.{updated_bal:.2f}")
 
-      self.accounts[self.current_user]["Mini-Statement"].append(
+      self.accounts[self.current_user]["Transactions"].append(
           f"Transaction ID:{transaction__id} | Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
       self.save_data()
@@ -148,7 +148,7 @@ class ATM:
       if (new_pin==confirm):
         self.accounts[self.current_user]["PIN"]=new_pin
         print(f"\nPIN Changed Successfully.\n {self.add_timestamp()}")
-        self.accounts[self.current_user]["Mini-Statement"].append(
+        self.accounts[self.current_user]["Transactions"].append(
           f"PIN Changed on {self.add_timestamp()}"
         )
         self.save_data()
@@ -195,11 +195,11 @@ class ATM:
     self.accounts[self.current_user]["Balance"]-=amount_to_transfer
     self.accounts[receiver_acc_num]["Balance"]+=amount_to_transfer
 
-    # Append to both mini-statements
-    self.accounts[self.current_user]["Mini-Statement"].append(
+    # Append to both Transactionss
+    self.accounts[self.current_user]["Transactions"].append(
       f"Transaction ID:{transaction__id} | Transferred -> Rs.{amount_to_transfer:.2f} to Acc:{receiver_acc_num}   {self.add_timestamp()}"
       )
-    self.accounts[receiver_acc_num]["Mini-Statement"].append(
+    self.accounts[receiver_acc_num]["Transactions"].append(
       f"Transaction ID:{transaction__id} | Received -> Rs.{amount_to_transfer:.2f} from Acc:{self.current_user}   {self.add_timestamp()}"
       )
     
@@ -209,19 +209,44 @@ class ATM:
 
 
 
-# Mini Statement:
-  def show_miniStatement(self):
-    print("\n=====Mini Statement=====")
-    if (len(self.accounts[self.current_user]["Mini-Statement"])==0):
-      print("\nNo Transactions Yet.")
-    else:
-      for item in self.accounts[self.current_user]["Mini-Statement"]:
-        print("*",item)
-    print("=========================")
+# Transactions:
+  def transactions(self):
+    print("\n=====Transactions History (Newest Above) =====")
+    history = self.accounts[self.current_user]["Transactions"]
+
+    if not history:
+      print("No Transactions Yet.")
+      print("===============================")
+      return
+    
+    # Start by showing the most recent 5 items
+    count = 5
+    recent_history = history[-count:]
+        
+    for item in reversed(recent_history):
+      print("*", item)
+    print("===============================")
+
+    while count < len(history):
+      remaining = len(history) - count
+      print(f"\n[ ↓ {remaining} older transaction(s) hidden ]")
+      choice = input("Press [Enter] to load more, or [q] to exit: ").strip().lower()
+
+      if choice=='q':
+        break
+
+      # Expand the view by pulling the next batch of 5 records
+      count += 5
+      recent_history = history[-count:]
+            
+      print("\n===== Expanded History =====")
+      for item in reversed(recent_history):
+        print("*", item)
+      print("============================")
 
 # Logging out
   def logout(self):
-    self.accounts[self.current_user]["Mini-Statement"].append(
+    self.accounts[self.current_user]["Transactions"].append(
       f"Logged out Successfully.   {self.add_timestamp()}"
     )
     self.save_data()
@@ -233,7 +258,7 @@ class ATM:
 
 # Exiting and Saving data 
   def exit(self):
-    self.accounts[self.current_user]["Mini-Statement"].append(f"\nLogged out Successfully.  {self.add_timestamp()}")
+    self.accounts[self.current_user]["Transactions"].append(f"\nLogged out Successfully.  {self.add_timestamp()}")
     self.save_data()
     print("\nExited Successfully.\nThank You for using ATM.")
     exit()
@@ -247,7 +272,7 @@ class ATM:
       print("3.Withdraw Money")
       print("4.Transfer Money")
       print("5.Change Pin")
-      print("6.Mini Statement")
+      print("6.Transactions History")
       print("7.Logout (Return to Welcome Menu)")
       print("8.Exit(Close System Completely)")
       print("====================")
@@ -265,7 +290,7 @@ class ATM:
       elif (choice=="5"):
         self.change_pin()
       elif (choice=="6"):
-        self.show_miniStatement()
+        self.transactions()
       elif(choice=="7"):
         self.logout()
         break

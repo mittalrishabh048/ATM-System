@@ -2,50 +2,34 @@
     "1001": {
         "Name": "Rishabh",
         "PIN": "7863",
-        "Balance": 69000.0,
-        "Mini-Statement": [
-            "Check Balance -> Rs.5400.00   16/06/2026  19:28:06",
-            "Deposited->Rs.500.00  16/06/2026  19:28:08",
-            "Withdrawn->Rs.200.00  16/06/2026  19:28:12",
-            "\nLogged out Successfully.  16/06/2026  19:28:17",
-            "\nLogged out Successfully.  17/06/2026  12:32:42",
-            "Logged out Successfully.   17/06/2026  12:49:43",
-            "Check Balance -> Rs.5900.00   17/06/2026  13:29:03",
-            "Deposited->Rs.4100.00  17/06/2026  13:29:16",
-            "Withdrawn->Rs.2000.00  17/06/2026  13:29:23",
-            "Logged out Successfully.   17/06/2026  13:29:43",
-            "Received -> Rs.1000.00 from Acc:1002   17/06/2026  15:32:55",
-            "Check Balance -> Rs.9000.00   17/06/2026  15:33:13",
-            "\nLogged out Successfully.  17/06/2026  15:33:33",
-            "Check Balance -> Rs.9000.00   17/06/2026  19:12:02",
-            "TXN832312 | Deposited->Rs.1000.00  17/06/2026  19:12:09",
-            "\nLogged out Successfully.  17/06/2026  19:16:08",
-            "Transaction ID:TXN596239 | Deposited->Rs.5000.00  17/06/2026  19:16:35",
-            "\nLogged out Successfully.  17/06/2026  19:17:03",
-            "Transaction ID:TXN929440 | Withdrawn->Rs.5000.00  17/06/2026  19:17:18",
-            "Transaction ID:TXN835540 | Deposited->Rs.5000.00  17/06/2026  19:17:28",
-            "\nLogged out Successfully.  17/06/2026  19:22:37",
-            "Check Balance -> Rs.15000.00   17/06/2026  19:23:01",
-            "Transaction ID:TXN701313 | Deposited->Rs.5000.00  17/06/2026  19:23:08",
-            "Logged out Successfully.   17/06/2026  19:23:52",
-            "Transaction ID:TXN849463 | Received -> Rs.49000.00 from Acc:1002   17/06/2026  19:24:25",
-            "Check Balance -> Rs.69000.00   17/06/2026  19:24:46",
-            "\nLogged out Successfully.  17/06/2026  19:25:25"
+        "Balance": 7500.0,
+        "Transactions": [
+            "Check Balance -> Rs.5000.00   17/06/2026  23:14:30",
+            "Check Balance -> Rs.5000.00   17/06/2026  23:14:37",
+            "Check Balance -> Rs.5000.00   17/06/2026  23:14:38",
+            "Check Balance -> Rs.5000.00   17/06/2026  23:14:39",
+            "Transaction ID:TXN830319 | Withdrawn->Rs.2000.00  17/06/2026  23:14:46",
+            "Transaction ID:TXN114760 | Deposited->Rs.1000.00  17/06/2026  23:14:53",
+            "Transaction ID:TXN516120 | Deposited->Rs.6000.00  17/06/2026  23:15:09",
+            "Transaction ID:TXN886763 | Withdrawn->Rs.2500.00  17/06/2026  23:15:15",
+            "Logged out Successfully.   17/06/2026  23:15:18",
+            "Logged out Successfully.   17/06/2026  23:17:22",
+            "Logged out Successfully.   17/06/2026  23:21:35"
         ]
     },
     "1002": {
         "Name": "Rajat",
         "PIN": "4466",
-        "Balance": 50000.0,
-        "Mini-Statement": [
-            "Account Created on 17/06/2026  13:29:55",
-            "Deposited->Rs.100000.00  17/06/2026  13:30:22",
-            "Logged out Successfully.   17/06/2026  13:30:33",
-            "Transferred -> Rs.1000.00 to Acc:1001   17/06/2026  15:32:55",
-            "Logged out Successfully.   17/06/2026  15:33:02",
-            "Check Balance -> Rs.99000.00   17/06/2026  19:24:05",
-            "Transaction ID:TXN849463 | Transferred -> Rs.49000.00 to Acc:1001   17/06/2026  19:24:25",
-            "Logged out Successfully.   17/06/2026  19:24:35"
+        "Balance": 99000.0,
+        "Transactions": [
+            "Check Balance -> Rs.50000.00   17/06/2026  23:15:33",
+            "Transaction ID:TXN623427 | Deposited->Rs.10000.00  17/06/2026  23:15:39",
+            "Transaction ID:TXN772733 | Deposited->Rs.40000.00  17/06/2026  23:15:46",
+            "Transaction ID:TXN515748 | Withdrawn->Rs.1000.00  17/06/2026  23:15:55",
+            "Check Balance -> Rs.99000.00   17/06/2026  23:16:03",
+            "\nLogged out Successfully.  17/06/2026  23:16:08",
+            "\nLogged out Successfully.  17/06/2026  23:18:11",
+            "\nLogged out Successfully.  17/06/2026  23:22:20"
         ]
     }
 }
