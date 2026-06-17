@@ -149,6 +149,57 @@ class ATM:
     else:
       print("\nWrong Old PIN!")
 
+# Transfer Money
+  def transfer_money(self):
+    # Step_1:Taking input of Receiver's Account Number and Amount To Transfer
+    receiver_acc_num=input("Enter The Receiver's Account Number:")
+    
+
+    # Step_2:Validating the Data
+    # A:Receiver Account existence
+    if receiver_acc_num not in self.accounts:
+      print("Account Not Found!")
+      return
+    
+    # B: Self Transfer Prevention
+    if receiver_acc_num==self.current_user:
+      print("\nCan't Transfer to your own Account")
+      return
+    
+    # Step 3: Safely taking input of Amount to Transfer
+    amount_to_transfer = float(input("Enter The Amount To Transfer: "))
+    
+    
+    # C:Amount Validity
+    if (amount_to_transfer<=0):
+      print("\nInvalid Amount!")
+      return
+    # D:Sufficent Balance
+    if (amount_to_transfer>self.accounts[self.current_user]["Balance"]):
+      print("\nInsufficient Balance")
+      return
+    
+    # If the code reaches this point, all validation checks have passed!
+    print("\nValidation Successful. Processing transaction...")
+
+  # Step_3:Maths and Logs
+    self.accounts[self.current_user]["Balance"]-=amount_to_transfer
+    self.accounts[receiver_acc_num]["Balance"]+=amount_to_transfer
+
+    # Append to both mini-statements
+    self.accounts[self.current_user]["Mini-Statement"].append(
+      f"Transferred -> Rs.{amount_to_transfer:.2f} to Acc:{receiver_acc_num}   {self.add_timestamp()}"
+      )
+    self.accounts[receiver_acc_num]["Mini-Statement"].append(
+      f"Received -> Rs.{amount_to_transfer:.2f} from Acc:{self.current_user}   {self.add_timestamp()}"
+      )
+    
+    # Save to file and notify user
+    self.save_data()
+    print(f"\nTransaction Successful! Remaining Balance: Rs.{self.accounts[self.current_user]['Balance']:.2f}")
+
+
+
 # Mini Statement:
   def show_miniStatement(self):
     print("\n=====Mini Statement=====")
@@ -185,10 +236,11 @@ class ATM:
       print("1.Check Balance")
       print("2.Deposit Money")
       print("3.Withdraw Money")
-      print("4.Change Pin")
-      print("5.Mini Statement")
-      print("6.Logout (Return to Welcome Menu)")
-      print("7.Exit(Close System Completely)")
+      print("4.Transfer Money")
+      print("5.Change Pin")
+      print("6.Mini Statement")
+      print("7.Logout (Return to Welcome Menu)")
+      print("8.Exit(Close System Completely)")
       print("====================")
 
       choice=input("Enter Your Choice:")
@@ -200,13 +252,15 @@ class ATM:
       elif (choice=="3"):
         self.withdraw_money()
       elif (choice=="4"):
-        self.change_pin()
+        self.transfer_money()
       elif (choice=="5"):
+        self.change_pin()
+      elif (choice=="6"):
         self.show_miniStatement()
-      elif(choice=="6"):
+      elif(choice=="7"):
         self.logout()
         break
-      elif(choice=="7"):
+      elif(choice=="8"):
         self.exit()
         break
       else:
