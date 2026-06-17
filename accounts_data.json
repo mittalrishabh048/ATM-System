@@ -2,7 +2,7 @@
     "1001": {
         "Name": "Rishabh",
         "PIN": "7863",
-        "Balance": 9000.0,
+        "Balance": 69000.0,
         "Mini-Statement": [
             "Check Balance -> Rs.5400.00   16/06/2026  19:28:06",
             "Deposited->Rs.500.00  16/06/2026  19:28:08",
@@ -16,19 +16,36 @@
             "Logged out Successfully.   17/06/2026  13:29:43",
             "Received -> Rs.1000.00 from Acc:1002   17/06/2026  15:32:55",
             "Check Balance -> Rs.9000.00   17/06/2026  15:33:13",
-            "\nLogged out Successfully.  17/06/2026  15:33:33"
+            "\nLogged out Successfully.  17/06/2026  15:33:33",
+            "Check Balance -> Rs.9000.00   17/06/2026  19:12:02",
+            "TXN832312 | Deposited->Rs.1000.00  17/06/2026  19:12:09",
+            "\nLogged out Successfully.  17/06/2026  19:16:08",
+            "Transaction ID:TXN596239 | Deposited->Rs.5000.00  17/06/2026  19:16:35",
+            "\nLogged out Successfully.  17/06/2026  19:17:03",
+            "Transaction ID:TXN929440 | Withdrawn->Rs.5000.00  17/06/2026  19:17:18",
+            "Transaction ID:TXN835540 | Deposited->Rs.5000.00  17/06/2026  19:17:28",
+            "\nLogged out Successfully.  17/06/2026  19:22:37",
+            "Check Balance -> Rs.15000.00   17/06/2026  19:23:01",
+            "Transaction ID:TXN701313 | Deposited->Rs.5000.00  17/06/2026  19:23:08",
+            "Logged out Successfully.   17/06/2026  19:23:52",
+            "Transaction ID:TXN849463 | Received -> Rs.49000.00 from Acc:1002   17/06/2026  19:24:25",
+            "Check Balance -> Rs.69000.00   17/06/2026  19:24:46",
+            "\nLogged out Successfully.  17/06/2026  19:25:25"
         ]
     },
     "1002": {
         "Name": "Rajat",
         "PIN": "4466",
-        "Balance": 99000.0,
+        "Balance": 50000.0,
         "Mini-Statement": [
             "Account Created on 17/06/2026  13:29:55",
             "Deposited->Rs.100000.00  17/06/2026  13:30:22",
             "Logged out Successfully.   17/06/2026  13:30:33",
             "Transferred -> Rs.1000.00 to Acc:1001   17/06/2026  15:32:55",
-            "Logged out Successfully.   17/06/2026  15:33:02"
+            "Logged out Successfully.   17/06/2026  15:33:02",
+            "Check Balance -> Rs.99000.00   17/06/2026  19:24:05",
+            "Transaction ID:TXN849463 | Transferred -> Rs.49000.00 to Acc:1001   17/06/2026  19:24:25",
+            "Logged out Successfully.   17/06/2026  19:24:35"
         ]
     }
 }

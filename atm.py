@@ -18,6 +18,12 @@ class ATM:
     presenthour=datetime.datetime.now().strftime("%d/%m/%Y  %H:%M:%S")
     return presenthour
 
+# Generating Transaction ID
+  def transaction_id(self):
+    id_num=str(random.randint(100000,999999))
+    txn_id="TXN"+id_num
+    return txn_id
+
 # Saving data to JSON File
   def save_data(self):
     with open("accounts_data.json","w") as save:
@@ -98,11 +104,12 @@ class ATM:
     amount=float(input("Enter Deposit Amount:Rs."))
 
     if (amount>0):
+      transaction__id=self.transaction_id()
       self.accounts[self.current_user]["Balance"]+=amount
-      print(f"\nRs.{amount:.2f} Deposited Successfully.\n {self.add_timestamp()}")
+      print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Deposited Successfully.\n {self.add_timestamp()}")
       print(f"\nUpdated Balance:Rs.{self.accounts[self.current_user]["Balance"]:.2f}")
       self.accounts[self.current_user]["Mini-Statement"].append(
-          f"Deposited->Rs.{amount:.2f}  {self.add_timestamp()}"
+          f"Transaction ID:{transaction__id} | Deposited->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
       self.save_data()
     else:
@@ -118,13 +125,14 @@ class ATM:
     elif (amount>current_bal):
       print(f"\nInsufficient Balance.")
     else:
+      transaction__id=self.transaction_id()
       self.accounts[self.current_user]["Balance"]-=amount
       updated_bal=self.accounts[self.current_user]["Balance"]
-      print(f"\nRs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
+      print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
       print(f"Remaining Balance:Rs.{updated_bal:.2f}")
 
       self.accounts[self.current_user]["Mini-Statement"].append(
-          f"Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
+          f"Transaction ID:{transaction__id} | Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
       self.save_data()
 
@@ -183,15 +191,16 @@ class ATM:
     print("\nValidation Successful. Processing transaction...")
 
   # Step_3:Maths and Logs
+    transaction__id=self.transaction_id()
     self.accounts[self.current_user]["Balance"]-=amount_to_transfer
     self.accounts[receiver_acc_num]["Balance"]+=amount_to_transfer
 
     # Append to both mini-statements
     self.accounts[self.current_user]["Mini-Statement"].append(
-      f"Transferred -> Rs.{amount_to_transfer:.2f} to Acc:{receiver_acc_num}   {self.add_timestamp()}"
+      f"Transaction ID:{transaction__id} | Transferred -> Rs.{amount_to_transfer:.2f} to Acc:{receiver_acc_num}   {self.add_timestamp()}"
       )
     self.accounts[receiver_acc_num]["Mini-Statement"].append(
-      f"Received -> Rs.{amount_to_transfer:.2f} from Acc:{self.current_user}   {self.add_timestamp()}"
+      f"Transaction ID:{transaction__id} | Received -> Rs.{amount_to_transfer:.2f} from Acc:{self.current_user}   {self.add_timestamp()}"
       )
     
     # Save to file and notify user
