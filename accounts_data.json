@@ -7,30 +7,39 @@
             "Check Balance -> Rs.5400.00   16/06/2026  19:28:06",
             "Deposited->Rs.500.00  16/06/2026  19:28:08",
             "Withdrawn->Rs.200.00  16/06/2026  19:28:12",
-            "\nLogged out Successfully.  16/06/2026  19:28:17"
+            "\nLogged out Successfully.  16/06/2026  19:28:17",
+            "\nLogged out Successfully.  17/06/2026  12:32:42",
+            "Logged out Successfully.   17/06/2026  12:49:43"
         ]
     },
-    "1002": {
-        "Name": "Rajat",
-        "PIN": "4466",
-        "Balance": 52000.0,
+    "5151": {
+        "Name": "A",
+        "PIN": "1234",
+        "Balance": 1000.0,
         "Mini-Statement": [
-            "Check Balance -> Rs.50000.00   16/06/2026  19:28:30",
-            "Deposited->Rs.2000.00  16/06/2026  19:28:36",
-            "Withdrawn->Rs.1000.00  16/06/2026  19:28:39",
-            "\nLogged out Successfully.  16/06/2026  19:28:41"
+            "Account Created on 17/06/2026  13:05:18",
+            "Deposited->Rs.1000.00  17/06/2026  13:06:16",
+            "Logged out Successfully.   17/06/2026  13:06:19",
+            "Logged out Successfully.   17/06/2026  13:10:08"
         ]
     },
-    "8288": {
-        "Name": "Aadrsh",
-        "PIN": "1111",
-        "Balance": 500.0,
+    "1694": {
+        "Name": "B",
+        "PIN": "1234",
+        "Balance": 1000.0,
         "Mini-Statement": [
-            "Account Created on 16/06/2026  19:29:10",
-            "Check Balance -> Rs.0.00   16/06/2026  19:29:30",
-            "Deposited->Rs.500.00  16/06/2026  19:29:34",
-            "Withdrawn->Rs.100.00  16/06/2026  19:29:37",
-            "\nLogged out Successfully.  16/06/2026  19:29:39"
+            "Account Created on 17/06/2026  13:05:43",
+            "Check Balance -> Rs.0.00   17/06/2026  13:07:07",
+            "Deposited->Rs.1000.00  17/06/2026  13:07:29",
+            "\nLogged out Successfully.  17/06/2026  13:07:35",
+            "Check Balance -> Rs.1000.00   17/06/2026  13:07:58",
+            "PIN Changed on 17/06/2026  13:08:41",
+            "Logged out Successfully.   17/06/2026  13:08:49",
+            "Check Balance -> Rs.1000.00   17/06/2026  13:09:19",
+            "Logged out Successfully.   17/06/2026  13:09:25",
+            "Check Balance -> Rs.1000.00   17/06/2026  13:09:34",
+            "Logged out Successfully.   17/06/2026  13:09:51",
+            "\nLogged out Successfully.  17/06/2026  13:10:35"
         ]
     }
 }

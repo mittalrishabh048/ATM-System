@@ -1,4 +1,4 @@
-#FINAL PROJECT:ATM SYSTEM.
+# ATM SYSTEM.
 import datetime #For adding timestamps with actions
 import json     #For saving the transaction(Actions) history
 import random   #For generating account numbers for different users
@@ -118,9 +118,10 @@ class ATM:
     elif (amount>current_bal):
       print(f"\nInsufficient Balance.")
     else:
-      current_bal-=amount
+      self.accounts[self.current_user]["Balance"]-=amount
+      updated_bal=self.accounts[self.current_user]["Balance"]
       print(f"\nRs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
-      print(f"Remaining Balance:Rs.{current_bal:.2f}")
+      print(f"Remaining Balance:Rs.{updated_bal:.2f}")
 
       self.accounts[self.current_user]["Mini-Statement"].append(
           f"Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
@@ -158,11 +159,23 @@ class ATM:
         print("*",item)
     print("=========================")
 
+# Logging out
+  def logout(self):
+    self.accounts[self.current_user]["Mini-Statement"].append(
+      f"Logged out Successfully.   {self.add_timestamp()}"
+    )
+    self.save_data()
+    print("\nLogged out Successfully.")
+    print("\nThank You for using ATM.")
+
+    # Clear the session state variable
+    self.current_user=None
+
 # Exiting and Saving data 
   def exit(self):
     self.accounts[self.current_user]["Mini-Statement"].append(f"\nLogged out Successfully.  {self.add_timestamp()}")
     self.save_data()
-    print("\nLogged out Successfully.\nThank You for using ATM.")
+    print("\nExited Successfully.\nThank You for using ATM.")
     exit()
 
 # ATM Menu:
@@ -174,7 +187,8 @@ class ATM:
       print("3.Withdraw Money")
       print("4.Change Pin")
       print("5.Mini Statement")
-      print("6.Exit")
+      print("6.Logout (Return to Welcome Menu)")
+      print("7.Exit(Close System Completely)")
       print("====================")
 
       choice=input("Enter Your Choice:")
@@ -190,6 +204,9 @@ class ATM:
       elif (choice=="5"):
         self.show_miniStatement()
       elif(choice=="6"):
+        self.logout()
+        break
+      elif(choice=="7"):
         self.exit()
         break
       else:
@@ -202,7 +219,7 @@ if __name__ == "__main__":
     while True:
         print("\n===== WELCOME TO THE ATM =====")
         print("1. Login to Existing Account")
-        print("2. Open a New Account")
+        print("2. Create a New Account")
         print("3. Exit System")
         print("==============================")
         
@@ -215,7 +232,7 @@ if __name__ == "__main__":
         elif start_choice == "2":
             atm.create_account()
         elif start_choice == "3":
-            print("\nThank you for visiting. Goodbye!")
+            print("\nSystem Shutting Down. Goodbye!")
             break
         else:
             print("\nInvalid selection! Please enter 1, 2, or 3.")
