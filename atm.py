@@ -101,9 +101,7 @@ class ATM:
   def check_balance(self):
     current_bal=self.accounts[self.current_user]["Balance"]
     print(f"\nCurrent Balance:Rs.{current_bal:.2f}\n{self.add_timestamp()}")
-    self.accounts[self.current_user]["Transactions"].append(
-        f"Check Balance -> Rs.{current_bal:.2f}   {self.add_timestamp()}"
-    )
+    
 
 # Better Input Validation 
   def get_valid_input(self,prompt):
