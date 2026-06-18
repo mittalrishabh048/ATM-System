@@ -1,38 +1,24 @@
 {
     "1001": {
-        "Name": "Rishabh",
+        "Name": "Rishabh Mittal",
         "PIN": "7863",
-        "Balance": 8000.0,
+        "Balance": 15000.0,
         "Transactions": [
-            "Check Balance -> Rs.5000.00   17/06/2026  23:14:30",
-            "Check Balance -> Rs.5000.00   17/06/2026  23:14:37",
-            "Check Balance -> Rs.5000.00   17/06/2026  23:14:38",
-            "Check Balance -> Rs.5000.00   17/06/2026  23:14:39",
-            "Transaction ID:TXN830319 | Withdrawn->Rs.2000.00  17/06/2026  23:14:46",
-            "Transaction ID:TXN114760 | Deposited->Rs.1000.00  17/06/2026  23:14:53",
-            "Transaction ID:TXN516120 | Deposited->Rs.6000.00  17/06/2026  23:15:09",
-            "Transaction ID:TXN886763 | Withdrawn->Rs.2500.00  17/06/2026  23:15:15",
-            "Logged out Successfully.   17/06/2026  23:15:18",
-            "Logged out Successfully.   17/06/2026  23:17:22",
-            "Logged out Successfully.   17/06/2026  23:21:35",
-            "Transaction ID:TXN550936 | Deposited->Rs.500.00  18/06/2026  14:10:47",
-            "Check Balance -> Rs.8000.00   18/06/2026  14:10:53",
-            "Logged out Successfully.   18/06/2026  14:11:06"
-        ]
-    },
-    "1002": {
-        "Name": "Rajat",
-        "PIN": "4466",
-        "Balance": 99000.0,
-        "Transactions": [
-            "Check Balance -> Rs.50000.00   17/06/2026  23:15:33",
-            "Transaction ID:TXN623427 | Deposited->Rs.10000.00  17/06/2026  23:15:39",
-            "Transaction ID:TXN772733 | Deposited->Rs.40000.00  17/06/2026  23:15:46",
-            "Transaction ID:TXN515748 | Withdrawn->Rs.1000.00  17/06/2026  23:15:55",
-            "Check Balance -> Rs.99000.00   17/06/2026  23:16:03",
-            "\nLogged out Successfully.  17/06/2026  23:16:08",
-            "\nLogged out Successfully.  17/06/2026  23:18:11",
-            "\nLogged out Successfully.  17/06/2026  23:22:20"
-        ]
+            "Account Created on 18/06/2026  15:09:33",
+            "Check Balance -> Rs.0.00   18/06/2026  15:10:25",
+            "Check Balance -> Rs.0.00   18/06/2026  15:10:32",
+            "Transaction ID:TXN114494 | Deposited->Rs.100.00  18/06/2026  15:10:37",
+            "Transaction ID:TXN238987 | Withdrawn->Rs.100.00  18/06/2026  15:11:02",
+            "Transaction ID:TXN242776 | Deposited->Rs.40000.00  18/06/2026  15:11:12",
+            "Transaction ID:TXN800078 | Withdrawn->Rs.24900.00  18/06/2026  15:12:33",
+            "Transaction ID:TXN194418 | Deposited->Rs.100.00  18/06/2026  15:12:44",
+            "\nLogged out Successfully.  18/06/2026  15:13:43"
+        ],
+        "Daily_Limits": {
+            "Last_Reset_Date": "18/06/2026",
+            "Withdrawn_Today": 25000.0,
+            "Deposited_Today": 40200.0,
+            "Transferred_Today": 0.0
+        }
     }
 }

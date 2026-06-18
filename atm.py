@@ -86,7 +86,13 @@ class ATM:
       "Name":name,
       "PIN":pin,
       "Balance":0.0,
-      "Transactions":[f"Account Created on {self.add_timestamp()}"]
+      "Transactions":[f"Account Created on {self.add_timestamp()}"],
+      "Daily_Limits":{
+          "Last_Reset_Date": self.add_timestamp().split()[0],
+          "Withdrawn_Today": 0.0,
+          "Deposited_Today": 0.0,
+          "Transferred_Today": 0.0
+        }
     }
     self.save_data()
     print(f"Account Created Successfully.\nYour Account Number is:{new_acc_num}.\nPlease remember this number to login.")
@@ -114,13 +120,35 @@ class ATM:
       except ValueError:
         print("\nInvalid input! Please enter a valid number without letters or symbols.")
 
+# Helper to check the calendar date and auto-reset limit trackers
+  def check_and_reset_daily_limits(self):
+    today_date = self.add_timestamp().split()[0]
+    limit_data = self.accounts[self.current_user]["Daily_Limits"]
+        
+    if limit_data["Last_Reset_Date"] != today_date:
+      limit_data["Last_Reset_Date"] = today_date
+      limit_data["Withdrawn_Today"] = 0.0
+      limit_data["Deposited_Today"] = 0.0
+      limit_data["Transferred_Today"] = 0.0
+      self.save_data()
+
 
 # Deposit Money:
   def deposit_money(self):
+    self.check_and_reset_daily_limits()
+    already_deposited = self.accounts[self.current_user]["Daily_Limits"]["Deposited_Today"]
+
     amount=self.get_valid_input("Enter Deposit Amount:Rs.")
 
+    # Enforcement Gate
+    if already_deposited + amount > 50000:
+      print(f"\nTransaction Declined! Max daily deposit limit is Rs.50,000. You have already deposited Rs.{already_deposited:.2f} today.")
+      return
+       
     transaction__id=self.transaction_id()
     self.accounts[self.current_user]["Balance"]+=amount
+    self.accounts[self.current_user]["Daily_Limits"]["Deposited_Today"] += amount
+    
     print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Deposited Successfully.\n {self.add_timestamp()}")
     print(f"\nUpdated Balance:Rs.{self.accounts[self.current_user]["Balance"]:.2f}")
     self.accounts[self.current_user]["Transactions"].append(
@@ -131,16 +159,28 @@ class ATM:
 
 # Withdraw Money:
   def withdraw_money(self):
-    amount=self.get_valid_input("Enter Withdraw Amount:Rs.")
+    self.check_and_reset_daily_limits()
+    already_withdrawn=self.accounts[self.current_user]["Daily_Limits"]["Withdrawn_Today"]
+
     current_bal = self.accounts[self.current_user]["Balance"]
+    amount=self.get_valid_input("Enter Withdraw Amount:Rs.")
     
+
+    # Enforcement Gate 1: Check Daily Business Rules
+    if already_withdrawn + amount > 25000:
+      print(f"\nTransaction Declined! Max daily withdrawal limit is Rs.25,000. You have already withdrawn Rs.{already_withdrawn:.2f} today.")
+      return
+    
+    # Enforcement Gate 2: Check Actual Ledger Balance
     if (amount>current_bal):
       print(f"\nInsufficient Balance.")
       return
 
     transaction__id=self.transaction_id()
     self.accounts[self.current_user]["Balance"]-=amount
+    self.accounts[self.current_user]["Daily_Limits"]["Withdrawn_Today"] += amount
     updated_bal=self.accounts[self.current_user]["Balance"]
+    
     print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
     print(f"Remaining Balance:Rs.{updated_bal:.2f}")
 
@@ -172,6 +212,9 @@ class ATM:
 
 # Transfer Money
   def transfer_money(self):
+    self.check_and_reset_daily_limits()
+    already_transferred = self.accounts[self.current_user]["Daily_Limits"]["Transferred_Today"]
+    
     # Step_1:Taking input of Receiver's Account Number and Amount To Transfer
     receiver_acc_num=input("Enter The Receiver's Account Number:")
     
@@ -190,9 +233,12 @@ class ATM:
     # Step 3: Safely taking input of Amount to Transfer
     amount_to_transfer = self.get_valid_input("Enter The Amount To Transfer: ")
     
+    # Enforcement Gate 1: Check Daily Business Rules
+    if already_transferred + amount_to_transfer > 30000:
+      print(f"\nTransaction Declined! Max daily transfer limit is Rs.30,000. You have already transferred Rs.{already_transferred:.2f} today.")
+      return
     
-    
-    # D:Sufficent Balance
+    # D/Enforcement Gate 2:Sufficent Balance
     if (amount_to_transfer>self.accounts[self.current_user]["Balance"]):
       print("\nInsufficient Balance")
       return
@@ -205,7 +251,11 @@ class ATM:
     self.accounts[self.current_user]["Balance"]-=amount_to_transfer
     self.accounts[receiver_acc_num]["Balance"]+=amount_to_transfer
 
-    # Append to both Transactionss
+    
+    # Track the transfer amount for the sender
+    self.accounts[self.current_user]["Daily_Limits"]["Transferred_Today"] += amount_to_transfer
+
+    # Append to both Transactions
     self.accounts[self.current_user]["Transactions"].append(
       f"Transaction ID:{transaction__id} | Transferred -> Rs.{amount_to_transfer:.2f} to Acc:{receiver_acc_num}   {self.add_timestamp()}"
       )
