@@ -2,7 +2,7 @@
     "1001": {
         "Name": "Rishabh",
         "PIN": "7863",
-        "Balance": 7500.0,
+        "Balance": 8000.0,
         "Transactions": [
             "Check Balance -> Rs.5000.00   17/06/2026  23:14:30",
             "Check Balance -> Rs.5000.00   17/06/2026  23:14:37",
@@ -14,7 +14,10 @@
             "Transaction ID:TXN886763 | Withdrawn->Rs.2500.00  17/06/2026  23:15:15",
             "Logged out Successfully.   17/06/2026  23:15:18",
             "Logged out Successfully.   17/06/2026  23:17:22",
-            "Logged out Successfully.   17/06/2026  23:21:35"
+            "Logged out Successfully.   17/06/2026  23:21:35",
+            "Transaction ID:TXN550936 | Deposited->Rs.500.00  18/06/2026  14:10:47",
+            "Check Balance -> Rs.8000.00   18/06/2026  14:10:53",
+            "Logged out Successfully.   18/06/2026  14:11:06"
         ]
     },
     "1002": {

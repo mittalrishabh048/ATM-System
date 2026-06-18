@@ -99,42 +99,55 @@ class ATM:
         f"Check Balance -> Rs.{current_bal:.2f}   {self.add_timestamp()}"
     )
 
+# Better Input Validation 
+  def get_valid_input(self,prompt):
+    while True:
+      try:
+        user_input=input(prompt).strip()
+        amount=float(user_input)
+
+        if amount<=0:
+          print("\nAmount must be greater than zero. Please try again.")
+          continue
+        return amount
+      
+      except ValueError:
+        print("\nInvalid input! Please enter a valid number without letters or symbols.")
+
+
 # Deposit Money:
   def deposit_money(self):
-    amount=float(input("Enter Deposit Amount:Rs."))
+    amount=self.get_valid_input("Enter Deposit Amount:Rs.")
 
-    if (amount>0):
-      transaction__id=self.transaction_id()
-      self.accounts[self.current_user]["Balance"]+=amount
-      print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Deposited Successfully.\n {self.add_timestamp()}")
-      print(f"\nUpdated Balance:Rs.{self.accounts[self.current_user]["Balance"]:.2f}")
-      self.accounts[self.current_user]["Transactions"].append(
-          f"Transaction ID:{transaction__id} | Deposited->Rs.{amount:.2f}  {self.add_timestamp()}"
+    transaction__id=self.transaction_id()
+    self.accounts[self.current_user]["Balance"]+=amount
+    print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Deposited Successfully.\n {self.add_timestamp()}")
+    print(f"\nUpdated Balance:Rs.{self.accounts[self.current_user]["Balance"]:.2f}")
+    self.accounts[self.current_user]["Transactions"].append(
+        f"Transaction ID:{transaction__id} | Deposited->Rs.{amount:.2f}  {self.add_timestamp()}"
       )
-      self.save_data()
-    else:
-      print("\nInvalid Amount.")
+    self.save_data()
 
 
 # Withdraw Money:
   def withdraw_money(self):
-    amount=float(input("Enter Withdraw Amount:Rs."))
+    amount=self.get_valid_input("Enter Withdraw Amount:Rs.")
     current_bal = self.accounts[self.current_user]["Balance"]
-    if (amount<=0):
-      print(f"\nInvalid Amount.")
-    elif (amount>current_bal):
+    
+    if (amount>current_bal):
       print(f"\nInsufficient Balance.")
-    else:
-      transaction__id=self.transaction_id()
-      self.accounts[self.current_user]["Balance"]-=amount
-      updated_bal=self.accounts[self.current_user]["Balance"]
-      print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
-      print(f"Remaining Balance:Rs.{updated_bal:.2f}")
+      return
 
-      self.accounts[self.current_user]["Transactions"].append(
-          f"Transaction ID:{transaction__id} | Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
-      )
-      self.save_data()
+    transaction__id=self.transaction_id()
+    self.accounts[self.current_user]["Balance"]-=amount
+    updated_bal=self.accounts[self.current_user]["Balance"]
+    print(f"\nTransaction ID:{transaction__id} | Rs.{amount:.2f} Withdrawal Successful.\n {self.add_timestamp()}")
+    print(f"Remaining Balance:Rs.{updated_bal:.2f}")
+
+    self.accounts[self.current_user]["Transactions"].append(
+      f"Transaction ID:{transaction__id} | Withdrawn->Rs.{amount:.2f}  {self.add_timestamp()}"
+    )
+    self.save_data()
 
 
 # Change Pin:
@@ -175,13 +188,10 @@ class ATM:
       return
     
     # Step 3: Safely taking input of Amount to Transfer
-    amount_to_transfer = float(input("Enter The Amount To Transfer: "))
+    amount_to_transfer = self.get_valid_input("Enter The Amount To Transfer: ")
     
     
-    # C:Amount Validity
-    if (amount_to_transfer<=0):
-      print("\nInvalid Amount!")
-      return
+    
     # D:Sufficent Balance
     if (amount_to_transfer>self.accounts[self.current_user]["Balance"]):
       print("\nInsufficient Balance")
@@ -263,6 +273,33 @@ class ATM:
     print("\nExited Successfully.\nThank You for using ATM.")
     exit()
 
+# Account Deletion
+  def del_acc(self):
+    print("\n===== !!! WARNING !!! =====")
+    print("Account deletion is permanent. All your data and balance will be lost forever.")
+
+    confirm_pin = input("Enter your 4-Digit PIN to verify ownership: ").strip()
+    stored_pin = self.accounts[self.current_user]["PIN"]
+
+    if(confirm_pin!=stored_pin):
+      print("\nIncorrect PIN! Deletion cancelled for security.")
+      return
+    
+    final_check = input("\nAre you absolutely sure you want to delete your account? (yes/no): ").strip().lower()
+
+    if final_check in ['yes', 'y']:
+      acc_to_delete = self.current_user
+        
+      del self.accounts[acc_to_delete]
+      self.save_data()
+        
+      self.current_user = None
+      print(f"\nAccount {acc_to_delete} has been successfully deleted from the system.")
+      print("Returning to the main welcome screen.")
+    else:
+      print("\nDeletion cancelled. Your account remains active.")
+
+
 # ATM Menu:
   def atm_menu(self):
     while True:
@@ -275,6 +312,7 @@ class ATM:
       print("6.Transactions History")
       print("7.Logout (Return to Welcome Menu)")
       print("8.Exit(Close System Completely)")
+      print("9.Delete Account")
       print("====================")
 
       choice=input("Enter Your Choice:")
@@ -297,6 +335,9 @@ class ATM:
       elif(choice=="8"):
         self.exit()
         break
+      elif(choice=="9"):
+        self.del_acc()
+        break # Breaks the menu loop since the account session is gone
       else:
         print("\nInvalid Choice!")
 
